@@ -1,0 +1,22 @@
+# common
+.envrc
+*.log
+.DS_Store
+**/*_venv/
+**/__pycache__/
+.vscode/settings.json
+*.zip
+
+# dbt
+.user.yml
+target
+dbt_packages
+logs/
+
+# terraform
+**/.terraform
+*.log
+**/*venv/
+backend.tf
+provider.tf
+global_variables.tf

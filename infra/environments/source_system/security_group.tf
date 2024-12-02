@@ -10,7 +10,8 @@ resource "aws_security_group" "db_sg" {
     to_port   = 3306
     protocol  = "TCP"
     security_groups = [
-      aws_security_group.bastion_sg.id
+      aws_security_group.bastion_sg.id,
+      aws_security_group.privatelink_sg.id,
     ]
   }
 }
@@ -28,6 +29,32 @@ resource "aws_security_group" "bastion_sg" {
     protocol  = "TCP"
     cidr_blocks = [
       "0.0.0.0/0"
+    ]
+  }
+
+  egress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+    cidr_blocks = [
+      "0.0.0.0/0"
+    ]
+  }
+}
+
+resource "aws_security_group" "privatelink_sg" {
+  vpc_id = aws_vpc.main.id
+  name   = "${local.name}-privatelink-security-group"
+  tags = {
+    Name = "${local.name}-privatelink-security-group"
+  }
+
+  ingress {
+    from_port = 3306
+    to_port   = 3306
+    protocol  = "TCP"
+    cidr_blocks = [
+      local.vpc_cidr_block
     ]
   }
 

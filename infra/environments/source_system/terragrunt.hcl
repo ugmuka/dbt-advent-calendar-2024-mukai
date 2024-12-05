@@ -7,9 +7,9 @@ generate "provider" {
 }
 
 include "root" {
-  path = "${get_repo_root()}/infra/terragrunt.hcl"
+  path = "${get_repo_root()}/infra/environments/terragrunt.hcl"
 }
 
 include "global_variables" {
-  path = "${get_repo_root()}/infra/global_variables.hcl"
+  path = "${get_repo_root()}/infra/environments/global_variables.hcl"
 }

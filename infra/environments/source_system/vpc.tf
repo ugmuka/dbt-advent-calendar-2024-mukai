@@ -48,8 +48,6 @@ resource "aws_subnet" "private_c" {
 resource "aws_db_subnet_group" "main" {
   name = "${local.name}-subnet-group"
   subnet_ids = [
-    aws_subnet.public_a.id,
-    aws_subnet.public_c.id,
     aws_subnet.private_a.id,
     aws_subnet.private_c.id,
   ]

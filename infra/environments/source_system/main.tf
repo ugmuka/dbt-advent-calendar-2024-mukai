@@ -11,4 +11,8 @@ resource "aws_rds_cluster" "main" {
   vpc_security_group_ids = [
     aws_security_group.db_sg.id,
   ]
+  serverlessv2_scaling_configuration {
+    max_capacity = 16
+    min_capacity = 2
+  }
 }
